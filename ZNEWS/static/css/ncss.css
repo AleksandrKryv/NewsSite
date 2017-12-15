@@ -1,0 +1,56 @@
+
+#myImg:hover{
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.btn {
+    border-radius: 0 0 0 0;
+}
+.sqcard {
+    border-radius: 0 0 0 0;
+    text-align: center;
+    box-shadow: 5px 6px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.sqcard:hover {
+    opacity: 2;
+    transition: 0.3s;
+}
+
+body {
+    padding-top: 70px;
+    text-decoration: none
+}
+
+a {
+    text-decoration: none ;
+    color: black;
+}
+
+.decoration_none {
+    text-decoration: none;
+    color: black;
+}
+
+.my_card-text {
+    color: black;
+    text-align: center;
+    padding-top: 40%;
+    opacity: 0;
+}
+.card-text:hover {
+    opacity: 0.8;
+    transition: 0.5s;
+}
+
+.a-opasity-05:hover
+{
+    opacity: 0.8;
+}
+
+.square
+{
+
+    border-radius: 0 0 0 0;
+}

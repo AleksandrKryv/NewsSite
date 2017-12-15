@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <div class="container">
+<div class="row">
+    {% for post in posts %}
+        {% if post.is_approved is True %}
+        <div class="col-sm-4">
+    <div class="card sqcard " >
+        {% if user.is_authenticated %}
+
+            <a style="text-decoration: none; color: black;" class="decoration_none ajaxlink"  data-toggle="modal" data-target="#{{ post.id }}" href={% url 'add_read' post.id %}>
+        {% else%}
+                        <a style="text-decoration: none; color: black;" class="decoration_none"  data-toggle="modal" data-target="#{{ post.id }}" href={% url 'add_read' post.id %}>
+        {% endif%}
+        <img id="myImg" class="card-img-top" src={{ post.post_photo }}>
+
+        <div class="card-body" style="height: 150px;">
+            {{ post.post_header }}
+            </div>
+        <div class="card-footer" style="background: white;">
+                <span class="badge square read-counter"> viewed {{ post.read }} times </span>
+                <span class="badge square">{{ post.post_date|date:"N j l H i " }}</span>
+
+        </div>
+            </a>
+
+    </div>
+        <br><br><br>
+        </div>
+
+    {% endif %}
+
+<div class="modal fade" id={{ post.id }}>
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content">
+      <div class="modal-body">
+        {{ post.post_content|safe }}
+      </div>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+    </div>
+     <script>
+
+        $(function () {
+
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('click', '.ajaxlink', function (e) {
+                e.preventDefault();
+                var post = $(this);
+                var spancounter = post.find('.read-counter');
+
+                 $.ajax({ url: post.attr('href')}).done(function (data) {
+                        var counter = data.read;
+                        spancounter.text('viewed ' + counter + ' times');
+                             console.log('done')
+                         });
+
+                console.log('read')
+            });
+        });
+
+    </script>
+{% endblock %}
